@@ -12,6 +12,12 @@ public class Player : MonoBehaviour
     void Start()
     {
         Walls = GameObject.FindGameObjectsWithTag("Wall");
+        GameObject[] CantPass = GameObject.FindGameObjectsWithTag("CantPass");
+        GameObject[] NewWalls = new GameObject[Walls.Length + CantPass.Length];
+        Walls.CopyTo(NewWalls, 0);
+        CantPass.CopyTo(NewWalls, Walls.Length);
+        Walls = NewWalls;
+
         Body = gameObject.GetComponent<BoxCollider2D>();
     }
 
